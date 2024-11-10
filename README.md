@@ -2,6 +2,8 @@
 
 Este projeto é uma automação em Python usando Selenium para realizar a busca de SKUs no Mercado Livre e verificar a existência de anúncios para cada código. Ele foi desenvolvido para facilitar a busca em massa de produtos e identificar rapidamente a disponibilidade de anúncios na plataforma.
 
+## Veja ele funcionando no Youtube:
+
 [![Assista ao vídeo no YouTube](https://img.youtube.com/vi/IbqwswYYAKs/maxresdefault.jpg)](https://youtube.com/shorts/IbqwswYYAKs?feature=share)
 
 
