@@ -3,14 +3,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 
-# Configura o Selenium para se conectar ao Chrome aberto no modo de depuração na porta 9222
 chrome_options = webdriver.ChromeOptions()
-chrome_options.debugger_address = "localhost:9222"  # Porta de depuração remota definida anteriormente
+chrome_options.debugger_address = "localhost:9222" 
 
-# Conecta ao Chrome já aberto
 driver = webdriver.Chrome(options=chrome_options)
 
-# Lista de SKU atualizada
 sku_list = [
     "A100", "A105", "A1200", "A1250", "A140", "A1400", "A145", "A150", "A1500",
     "A155", "A157", "A158", "A160", "A165", "A170", "A175", "A185", "A210", "A220",
@@ -22,24 +19,18 @@ sku_list = [
     "A840", "A870", "A880", "A940"
 ]
 
-
-# Verifique se a página desejada já está aberta
 print("Conectado à página existente.")
 
-# Função para buscar cada SKU e verificar se houve resultados
 for sku in sku_list:
     try:
-        # Encontra o campo de pesquisa pelo ID e insere o SKU
         search_box = driver.find_element(By.ID, ":R2akacq5p6:")
-        search_box.send_keys(Keys.CONTROL, 'a')  # Seleciona todo o texto com "CTRL + A"
-        search_box.send_keys(Keys.DELETE)  # Apaga o conteúdo selecionado com DELETE
-        search_box.send_keys(sku)  # Insere o SKU
-        search_box.send_keys(Keys.ENTER)  # Pressiona Enter para buscar
+        search_box.send_keys(Keys.CONTROL, 'a')
+        search_box.send_keys(Keys.DELETE)
+        search_box.send_keys(sku)
+        search_box.send_keys(Keys.ENTER)
 
-        # Espera para que a página de resultados carregue
-        time.sleep(3)  # Ajuste o tempo de acordo com a velocidade da internet e o tempo de resposta do site
+        time.sleep(3)
 
-        # Verifica o estado da checkbox para ver se o anúncio foi encontrado
         try:
             checkbox = driver.find_element(By.CLASS_NAME, "andes-checkbox__input")
             if checkbox.get_attribute("disabled"):  # Se a checkbox está desabilitada, não há resultados
@@ -52,7 +43,4 @@ for sku in sku_list:
     except Exception as e:
         print(f"Erro ao buscar SKU {sku}: {e}")
 
-    # Pequena pausa entre buscas
     time.sleep(1)
-
-# A janela do navegador permanecerá aberta após a execução
